@@ -2,14 +2,16 @@ import { makeSchema } from '@nexus/schema'
 import { nexusPrismaPlugin } from 'nexus-prisma'
 import * as path from 'path'
 
-import { User } from './User'
-import { Recipe } from './Recipe'
-import { Comment } from './Comment'
-import { Ingredient } from './Ingredient'
-import { Like } from './Like'
+import { User } from './tables/User'
+import { Recipe } from './tables/Recipe'
+import { Comment } from './tables/Comment'
+import { Ingredient } from './tables/Ingredient'
+import { Like } from './tables/Like'
+import { Query } from './Query'
+import { Mutation } from './Mutation'
 
 export const schema = makeSchema({
-    types: [User, Recipe, Comment, Ingredient, Like],
+    types: [Query, Mutation, User, Recipe, Comment, Ingredient, Like],
     plugins: [nexusPrismaPlugin()],
     outputs: {
         typegen: path.join(
