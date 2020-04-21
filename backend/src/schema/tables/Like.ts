@@ -7,7 +7,11 @@ export const Like = objectType({
         t.model.id()
         t.model.userId()
         t.model.recipeId()
-        t.model.likedBy()
-        t.model.recipe()
+        t.model.likedBy({
+            type: 'User'
+        })
+        t.model.recipe({
+            type: 'Recipe'
+        })
     }
 })

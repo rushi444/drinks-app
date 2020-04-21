@@ -6,5 +6,6 @@ export const Query = queryType({
         t.crud.recipes({ filtering: true, ordering: true })
         t.crud.ingredients()
         t.crud.comments()
+        t.crud.likes()
     }
 })
