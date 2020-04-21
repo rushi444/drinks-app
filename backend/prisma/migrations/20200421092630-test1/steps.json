@@ -1,0 +1,689 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateSource",
+      "source": "db"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "db"
+      },
+      "argument": "provider",
+      "value": "\"postgresql\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "db"
+      },
+      "argument": "url",
+      "value": "env(\"DATABASE_URL\")"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "User"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "email",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "email"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "name",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "password",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "recipes",
+      "type": "Recipe",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "comments",
+      "type": "Comment",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "likedRecipes",
+      "type": "Like",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Recipe"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "imageUrl",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "comments",
+      "type": "Comment",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "ingredients",
+      "type": "Ingredient",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "createdBy",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "createdBy"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "createdBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "createdBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Recipe",
+      "field": "createdOn",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Like"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Like",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Like",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Like",
+      "field": "likedBy",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "likedBy"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "likedBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "likedBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Like",
+      "field": "recipeId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Like",
+      "field": "recipe",
+      "type": "Recipe",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[recipeId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Like",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Comment"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "text",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "createdBy",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "createdBy"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "createdBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "createdBy"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "recipeId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Comment",
+      "field": "recipe",
+      "type": "Recipe",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[recipeId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Comment",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Ingredient"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Ingredient",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Ingredient",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Ingredient",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Ingredient",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Ingredient",
+      "field": "amount",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Ingredient",
+      "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Ingredient",
+      "field": "recipeId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Ingredient",
+      "field": "recipe",
+      "type": "Recipe",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Ingredient",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Ingredient",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[recipeId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Ingredient",
+          "field": "recipe"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    }
+  ]
+}

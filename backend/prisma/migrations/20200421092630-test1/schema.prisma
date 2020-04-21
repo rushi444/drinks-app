@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -28,7 +28,7 @@ model Recipe {
   ingredients Ingredient[]
   userId Int
   createdBy User @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
+  createdOn DateTime 
 }
 
 model Like {

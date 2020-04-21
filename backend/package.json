@@ -3,10 +3,28 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node dist/server",
+    "clean": "rm -rf dist",
+    "build": "yarn run clean && yarn run generate && tsc",
+    "generate": "yarn run generate:prisma && yarn run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema",
+    "postinstall": "yarn run generate",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/index"
+  },
   "devDependencies": {
     "@prisma/cli": "^2.0.0-beta.2",
     "@types/node": "^13.13.1",
     "ts-node": "^8.9.0",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@nexus/schema": "^0.13.1",
+    "@prisma/client": "^2.0.0-beta.3",
+    "apollo-server": "^2.12.0",
+    "graphql": "^15.0.0",
+    "nexus-prisma": "^0.12.0"
   }
 }
