@@ -1,24 +1,73 @@
 import { mutationType, intArg, stringArg } from '@nexus/schema'
-import { Ingredient } from './tables/Ingredient'
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 export const Mutation = mutationType({
     definition: t => {
-        t.crud.createOneUser({ alias: 'signUp' })
-        // t.crud.createOneRecipe()
+        t.crud.deleteOneLike({ alias: 'unlike' })
+
+        t.field('register', {
+            type: 'User',
+            args: {
+                name: stringArg({ required: false }),
+                email: stringArg({ required: true }),
+                password: stringArg({ required: true })
+            },
+            resolve: async (parent, { name, email, password }, { prisma }, info) => {
+                const hashedPassword = await bcrypt.hash(password, 10)
+                const newUser = await prisma.user.create({
+                    data: {
+                        email, name, password: hashedPassword
+                    }
+                })
+                return newUser
+            }
+        })
+
+        t.field('login', {
+            type: 'AuthPayload',
+            args: {
+                email: stringArg({ required: true }),
+                password: stringArg({ required: true })
+            },
+            resolve: async (parent, { email, password }, { prisma }, info) => {
+                const user = await prisma.user.findOne({
+                    where: {
+                        email
+                    }
+                })
+
+                if (!user) {
+                    throw new Error('Invalid Login')
+                }
+
+                const passwordMatch = await bcrypt.compare(password, user.password)
+
+                if (!passwordMatch) {
+                    throw new Error('Invalid Login')
+                }
+
+                const token = jwt.sign({ id: user.id, email: user.email }, '123456789', { expiresIn: '30d' })
+
+                return { token: token, user }
+            }
+        })
 
         t.field('createRecipe', {
             type: 'Recipe',
             args: {
                 name: stringArg({ required: true }),
                 imageUrl: stringArg(),
-                userId: intArg({ required: true })
             },
-            resolve: async (parent, { name, imageUrl, userId }, context, info) => {
-                const newRecipe = await context.prisma.recipe.create({
+            resolve: async (parent, { name, imageUrl }, { user, prisma }, info) => {
+                if (!user) {
+                    throw new Error('Not Authenticated')
+                }
+                const newRecipe = await prisma.recipe.create({
                     data: {
                         name, imageUrl, createdBy: {
                             connect: {
-                                id: userId
+                                id: user.id
                             }
                         }
                     }
@@ -31,15 +80,17 @@ export const Mutation = mutationType({
             type: 'Comment',
             args: {
                 text: stringArg({ required: true }),
-                userId: intArg({ required: true }),
                 recipeId: intArg({ required: true })
             },
-            resolve: async (parent, { text, userId, recipeId }, context, info) => {
-                const newComment = await context.prisma.comment.create({
+            resolve: async (parent, { text, recipeId }, { user, prisma }, info) => {
+                if (!user) {
+                    throw new Error('Not Authenticated')
+                }
+                const newComment = await prisma.comment.create({
                     data: {
                         text, createdBy: {
                             connect: {
-                                id: userId
+                                id: user.id
                             }
                         }, recipe: {
                             connect: {
@@ -53,14 +104,14 @@ export const Mutation = mutationType({
         })
 
         t.field('createIngredient', {
-            type: Ingredient,
+            type: 'Ingredient',
             args: {
                 amount: stringArg({ required: true }),
                 name: stringArg({ required: true }),
                 recipeId: intArg({ required: true })
             },
-            resolve: async (parent, { amount, name, recipeId }, context, info) => {
-                const newIngredient = await context.prisma.ingredient.create({
+            resolve: async (parent, { amount, name, recipeId }, { prisma }, info) => {
+                const newIngredient = await prisma.ingredient.create({
                     data: {
                         name, amount, recipe: {
                             connect: {
@@ -76,15 +127,14 @@ export const Mutation = mutationType({
         t.field('createLike', {
             type: 'Like',
             args: {
-                userId: intArg({ required: true }),
                 recipeId: intArg({ required: true })
             },
-            resolve: async (parent, { userId, recipeId }, context, info) => {
-                const newLike = await context.prisma.like.create({
+            resolve: async (parent, { recipeId }, { user, prisma }, info) => {
+                const newLike = await prisma.like.create({
                     data: {
                         likedBy: {
                             connect: {
-                                id: userId
+                                id: user.id
                             }
                         },
                         recipe: {

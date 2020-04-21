@@ -15,5 +15,17 @@ export const Recipe = objectType({
         })
         t.model.createdBy()
         t.model.createdAt()
+
+        t.int('numberOfLikes', {
+            description: 'number of likes recipe has',
+            resolve: async ({ id }, args, { prisma }, info) => {
+                const likes = await prisma.like.findMany({
+                    where: {
+                        recipeId: id
+                    }
+                })
+                return likes.length
+            }
+        })
     }
 })
