@@ -13,7 +13,9 @@ export const Recipe = objectType({
         t.model.ingredients({
             type: 'Ingredient'
         })
-        t.model.createdBy()
+        t.model.createdBy({
+            type: 'User'
+        })
         t.model.createdAt()
 
         t.int('numberOfLikes', {

@@ -6,9 +6,13 @@ export const Comment = objectType({
     definition: t => {
         t.model.id()
         t.model.recipeId()
-        t.model.recipe()
+        t.model.recipe({
+            type: 'Recipe'
+        })
         t.model.text()
         t.model.userId()
-        t.model.createdBy()
+        t.model.createdBy({
+            type: 'User'
+        })
     }
 })

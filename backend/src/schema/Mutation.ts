@@ -49,7 +49,7 @@ export const Mutation = mutationType({
 
                 const token = jwt.sign({ id: user.id, email: user.email }, '123456789', { expiresIn: '30d' })
 
-                return { token: token, user }
+                return { token, user }
             }
         })
 

@@ -8,6 +8,8 @@ export const Ingredient = objectType({
         t.model.name()
         t.model.amount()
         t.model.recipeId()
-        t.model.recipe()
+        t.model.recipe({
+            type: 'Recipe'
+        })
     }
 })
