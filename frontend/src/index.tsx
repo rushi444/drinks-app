@@ -11,7 +11,7 @@ import { App } from './App';
 import { customTheme } from './theme';
 
 const httpLink = new HttpLink({
-  uri: 'https://localhost:4000/graphql',
+  uri: 'http://localhost:4000',
   credentials: 'include',
 });
 

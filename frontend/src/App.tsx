@@ -1,10 +1,14 @@
 import React from 'react';
+import { Navbar } from './components/Navbar';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Dashboard } from './Views/Dashboard';
 
 export const App = () => {
   return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
+    <Router>
+      <div style={{height: '100vh'}}>
+      <Navbar />
+      <Dashboard /></div>
+    </Router>
   );
-}
-
+};

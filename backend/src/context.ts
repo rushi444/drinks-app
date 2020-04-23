@@ -32,7 +32,7 @@ export const createContext = ({ req }: any): Context => {
     const user = getUser(token)
     return {
         user,
-        prisma
+        prisma,  
     }
 }
 
