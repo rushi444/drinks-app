@@ -1,0 +1,36 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Recipe",
+      "field": "imageUrl",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "imageUrl"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "imageUrl"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "\"https://cb2.scene7.com/is/image/CB2/MarieCoupeCoktailGlasses7ozROF16/?$web_zoom$&190905021650&wid=450&hei=450\""
+    }
+  ]
+}

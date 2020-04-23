@@ -12,7 +12,7 @@ export const DrinkList: FC<IProps> = ({ drinks }) => {
   console.log('drinklist', drinks);
 
   return (
-    <Grid templateColumns='repeat(4, 1fr)'>
+    <Grid templateColumns='repeat(4, 1fr)' px='5%'>
       {drinks.map((drink) => (
         <Drink key={drink.id} drink={drink} />
       ))}

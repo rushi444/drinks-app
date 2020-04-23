@@ -12,7 +12,7 @@ export const Dashboard: FC = () => {
 
   const { data, loading } = useQuery(GET_DRINKS_QUERY);
 
-  if (loading) return <LoadingPage />
+  if (loading) return <LoadingPage />;
 
   data && console.log(data.recipes);
 
@@ -32,6 +32,10 @@ const GET_DRINKS_QUERY = gql`
       id
       name
       numberOfLikes
+      imageUrl
+      createdBy {
+        name
+      }
     }
   }
 `;
