@@ -8,7 +8,7 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloLink, from } from 'apollo-link';
 
 import { App } from './App';
-import { customTheme } from './theme';
+import { customTheme } from './utils/theme';
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:4000',

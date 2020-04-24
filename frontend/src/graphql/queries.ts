@@ -13,3 +13,12 @@ export const GET_DRINKS_QUERY = gql`
     }
   }
 `;
+
+export const CREATE_USER = gql`
+  mutation($name: String!, $email: String!, $password: String!) {
+    register(name: $name, email: $email, password: $password) {
+      name
+      email
+    }
+  }
+`;

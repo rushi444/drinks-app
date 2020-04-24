@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { SearchBar } from '../components/SearchBar';
 import { DrinkList } from '../components/DrinkList';
-import { LoadingPage } from '../components/LoadingPage';
-import { GET_DRINKS_QUERY } from '../utils/queries';
+import { LoadingPage } from '../utils/LoadingPage';
+import { GET_DRINKS_QUERY } from '../graphql/queries';
 import { IDrink } from '../types';
 
 export const Dashboard: FC = () => {
