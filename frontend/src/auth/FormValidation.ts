@@ -26,3 +26,11 @@ export const validatePassword = (value: string) => {
     }
     return error
 }
+
+export const validatePasswordLogin = (value: string) => {
+    let error
+    if (!value) {
+        error = 'Password is Required'
+    }
+    return error
+}

@@ -18,30 +18,29 @@ import {
 import { LoadingPage } from '../utils/LoadingPage';
 import { CREATE_USER } from '../graphql/queries';
 import styled from '@emotion/styled';
+import { useHistory } from 'react-router-dom';
 
 export const Register: FC = () => {
+  const history = useHistory();
   const [createUser, { loading }] = useMutation(CREATE_USER, {
-    onError: () => null,
-    onCompleted: () => console.log('user created'),
+    onError: (err) => console.log('error creating user', err),
+    onCompleted: () => history.push('/login'),
   });
 
   if (loading) return <LoadingPage />;
 
   return (
-    <RegisterContainer>
+    <FormContainer>
       <Box as='h1' fontSize='3rem' mb='3%'>
         Register
       </Box>
       <Box>
         <Formik
           initialValues={{ name: '', email: '', password: '' }}
-          onSubmit={(data, { setSubmitting, resetForm }) => {
-            setSubmitting(true);
+          onSubmit={(data) => {
             createUser({ variables: { ...data } });
-            setSubmitting(false);
-            resetForm();
           }}>
-          {({ values, isSubmitting }) => (
+          {({ isSubmitting }) => (
             <Form style={{ margin: '0 auto' }}>
               <Field name='name' validate={validateName}>
                 {({ field, form }: any) => (
@@ -87,11 +86,11 @@ export const Register: FC = () => {
           )}
         </Formik>
       </Box>
-    </RegisterContainer>
+    </FormContainer>
   );
 };
 
-const RegisterContainer = styled.div({
+export const FormContainer = styled.div({
   width: '40%',
   textAlign: 'center',
   margin: '0 auto',
