@@ -1,16 +1,20 @@
 import React, { FC } from 'react';
-import { Box, Image, Badge, Text } from '@chakra-ui/core';
+import { Box, Image, Badge, Text, useDisclosure } from '@chakra-ui/core';
 
 import { IDrink } from '../types';
+import { DrinkModal } from './DrinkModal';
 
 interface IProps {
   drink: IDrink;
 }
 
 export const Drink: FC<IProps> = ({ drink }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   console.log(drink);
   return (
-    <Box bg='white' maxW='sm' borderWidth='1px' rounded='lg' overflow='hidden'>
+    <Box onClick={() => onOpen()} bg='white' maxW='xs' maxH='md' rounded='lg' overflow='hidden'>
+      <DrinkModal isOpen={isOpen} onClose={onClose} />
       <Image src={drink.imageUrl} />
       <Box padding='3'>
         <Box display='flex' alignItems='baseline'>

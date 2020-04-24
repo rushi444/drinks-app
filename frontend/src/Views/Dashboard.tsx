@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import { SearchBar } from '../components/SearchBar';
 import { DrinkList } from '../components/DrinkList';
 import { LoadingPage } from '../components/LoadingPage';
+import { GET_DRINKS_QUERY } from '../utils/queries';
 import { IDrink } from '../types';
 
 export const Dashboard: FC = () => {
@@ -25,17 +25,3 @@ export const Dashboard: FC = () => {
     </div>
   );
 };
-
-const GET_DRINKS_QUERY = gql`
-  query {
-    recipes {
-      id
-      name
-      numberOfLikes
-      imageUrl
-      createdBy {
-        name
-      }
-    }
-  }
-`;
