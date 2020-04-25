@@ -1,1 +1,1 @@
-# cocktail-app
+# drinks-app
