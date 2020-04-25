@@ -7,5 +7,19 @@ export const Query = queryType({
         t.crud.ingredients({ filtering: true })
         t.crud.comments()
         t.crud.likes()
+
+        t.field('me', {
+            type: 'User',
+            args: {},
+            resolve: async (parent, args, { user, prisma }, info) => {
+                const me = prisma.user.findOne({
+                    where: {
+                        id: user.id
+                    }
+                })
+                return me
+            }
+
+        })
     }
 })

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Navbar } from './components/Navbar';
@@ -7,16 +7,28 @@ import { Register } from './auth/Register';
 import { Login } from './auth/Login';
 
 export const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      setLoggedIn(true);
+    }
+  }, []);
+
   return (
     <Router>
       <div style={{ height: '100vh' }}>
-        <Navbar />
+        <Navbar loggedIn={loggedIn} />
         <Switch>
           <Route exact path='/' component={Dashboard} />
           <Route exact path='/register' component={Register} />
-          <Route exact path='/login' component={Login} />
+          <Route
+            exact
+            path='/login'
+            render={(props) => <Login {...props} setLoggedIn={setLoggedIn} />}
+          />
+          )} />
         </Switch>
-     </div>
+      </div>
     </Router>
   );
 };

@@ -16,12 +16,20 @@ import { Formik, Form, Field } from 'formik';
 import { validateEmail, validatePasswordLogin } from './FormValidation';
 import { useHistory } from 'react-router-dom';
 
-export const Login: FC = () => {
+interface IProps {
+  setLoggedIn: Function
+}
+
+export const Login: FC<IProps> = ({ setLoggedIn}) => {
   const history = useHistory();
   const [login, { loading, client }] = useMutation(LOGIN, {
     onError: (err) => console.log(err),
     onCompleted: (data) => {
       localStorage.setItem('token', data.login.token);
+      client?.writeData({
+        data: { isLoggedIn: !!localStorage.getItem('token') },
+      });
+      setLoggedIn(true)
       history.push('/');
     },
   });
@@ -38,9 +46,6 @@ export const Login: FC = () => {
           initialValues={{ email: '', password: '' }}
           onSubmit={(data) => {
             login({ variables: { ...data } });
-            client?.writeData({
-              data: { isLoggedIn: !!localStorage.getItem('token') },
-            });
           }}>
           {({ isSubmitting }) => (
             <Form style={{ margin: '0 auto' }}>

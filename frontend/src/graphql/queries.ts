@@ -34,3 +34,12 @@ export const LOGIN = gql`
     }
 }
 `
+
+export const ME_QUERY = gql`
+  query {
+    me {
+      id
+      name
+    }
+  }
+`;
