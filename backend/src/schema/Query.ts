@@ -8,6 +8,8 @@ export const Query = queryType({
         t.crud.comments()
         t.crud.likes()
 
+        t.crud.recipe()
+
         t.field('me', {
             type: 'User',
             args: {},
