@@ -32,8 +32,8 @@ export const LOGIN = gql`
       }
       token
     }
-}
-`
+  }
+`;
 
 export const ME_QUERY = gql`
   query {
@@ -45,20 +45,20 @@ export const ME_QUERY = gql`
 `;
 
 export const RECIPE_DETAILS = gql`
-query($id: Int) {
-  recipe(where: { id: $id }) {
-    name
-    imageUrl
-    ingredients {
+  query($id: Int) {
+    recipe(where: { id: $id }) {
       name
-      amount
-    }
-    comments {
-      text
-      createdBy {
+      imageUrl
+      ingredients {
         name
+        amount
+      }
+      comments {
+        text
+        createdBy {
+          name
+        }
       }
     }
   }
-}
-`
+`;
