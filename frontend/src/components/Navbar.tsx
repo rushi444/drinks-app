@@ -26,7 +26,7 @@ export const Navbar: FC<IProps> = ({loggedIn}) => {
           Drinks{loggedIn}
         </Text>
       </Flex>
-      <Grid color='black' templateColumns='repeat(5, 1fr)'>
+      <Grid color='black' templateColumns='repeat(3, 1fr)'>
         <Link to='/'>Home</Link>
         <Link to='/'>My Drinks</Link>
         <Link to='/'>Liked Drinks</Link>
@@ -50,7 +50,7 @@ export const Navbar: FC<IProps> = ({loggedIn}) => {
           Drinks
         </Text>
       </Flex>
-      <Grid color='black' templateColumns='repeat(5, 1fr)'>
+      <Grid color='black' templateColumns='repeat(3, 1fr)'>
         <Link to='/'>Home</Link>
         <Link to='/login'>Sign In</Link>
         <Link to='/register'>Sign Up</Link>
