@@ -13,8 +13,8 @@ import {
 import { Ingredients } from './Ingredients';
 import { useQuery } from '@apollo/react-hooks';
 import { RECIPE_DETAILS } from '../graphql/queries';
-import { LoadingPage } from '../utils/LoadingPage';
 import { Comments } from './Comments';
+import { LoadingPage } from '../utils/LoadingPage';
 
 interface IProps {
   isOpen: boolean;
@@ -27,23 +27,25 @@ export const DrinkModal: FC<IProps> = ({ isOpen, onClose, drinkId }) => {
     variables: { id: drinkId },
   });
 
-  if (loading) {
-    return <LoadingPage />;
+  if(loading){
+    return null
   }
 
-  console.log('MODAL', data);
+  let recipe;
 
-  const { recipe } = data;
+  if (data) {
+    recipe = data.recipe;
+  }
 
   return (
     <Modal blockScrollOnMount={true} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{recipe.name}</ModalHeader>
+        <ModalHeader>{recipe?.name}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Ingredients ingredients={recipe.ingredients} />
-          <Comments comments={recipe.comments} />
+          <Ingredients ingredients={recipe?.ingredients} />
+          <Comments comments={recipe?.comments} />
         </ModalBody>
         <ModalFooter>
           <Button variantColor='blue' mr={3} onClick={onClose}>

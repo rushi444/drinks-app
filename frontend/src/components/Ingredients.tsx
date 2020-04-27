@@ -11,9 +11,9 @@ export const Ingredients: FC<IProps> = ({ ingredients }) => {
     <Box>
       <h1>Ingredients</h1>
       <List styleType='disc'></List>
-      {ingredients.map((ingredient, index) => (
+      {ingredients?.map((ingredient, index) => (
         <ListItem key={index}>
-          {ingredient.amount} {ingredient.name}
+          {ingredient?.amount} {ingredient?.name}
         </ListItem>
       ))}
     </Box>

@@ -9,10 +9,10 @@ import { Ingredient } from './tables/Ingredient'
 import { Like } from './tables/Like'
 import { Query } from './Query'
 import { Mutation } from './Mutation'
-import { AuthPayload } from './AuthPayload'
+import { AuthPayload, IngredientInputType } from './Utils'
 
 export const schema = makeSchema({
-    types: [Query, Mutation, User, Recipe, Comment, Ingredient, Like, AuthPayload],
+    types: [Query, Mutation, User, Recipe, Comment, Ingredient, Like, AuthPayload, IngredientInputType],
     plugins: [nexusPrismaPlugin()],
     outputs: {
         typegen: path.join(

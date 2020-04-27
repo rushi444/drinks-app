@@ -16,7 +16,7 @@ export const Dashboard: FC = () => {
 
   data && console.log(data.recipes);
 
-  const drinks = searchResults.length > 0 ? searchResults : data.recipes;
+  const drinks = searchResults.length > 0 ? searchResults : data?.recipes;
 
   return (
     <div style={{ height: '90%', width: '100%', textAlign: 'center' }}>

@@ -1,6 +1,7 @@
-import { mutationType, intArg, stringArg } from '@nexus/schema'
+import { mutationType, intArg, stringArg, arg } from '@nexus/schema'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { IIngredient } from './Utils'
 
 export const Mutation = mutationType({
     definition: t => {
@@ -58,8 +59,11 @@ export const Mutation = mutationType({
             args: {
                 name: stringArg({ required: true }),
                 imageUrl: stringArg(),
+                ingredients: arg({
+                    type: 'IngredientInputType', list: true, required: false
+                })
             },
-            resolve: async (parent, { name, imageUrl }, { user, prisma }, info) => {
+            resolve: async (parent, { name, imageUrl, ingredients }, { user, prisma }, info) => {
                 if (!user) {
                     throw new Error('Not Authenticated')
                 }
@@ -72,6 +76,19 @@ export const Mutation = mutationType({
                         }
                     }
                 })
+                await Promise.all([
+                    ingredients?.forEach(async (ingredient: IIngredient) => {
+                        await prisma.ingredient.create({
+                            data: {
+                                name: ingredient.name, amount: ingredient.amount, recipe: {
+                                    connect: {
+                                        id: newRecipe.id
+                                    }
+                                }
+                            }
+                        })
+                    })
+                ])
                 return newRecipe
             }
         })
