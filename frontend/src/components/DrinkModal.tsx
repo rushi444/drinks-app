@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/core';
 import { Ingredients } from './Ingredients';
 import { useQuery } from '@apollo/react-hooks';
-import { RECIPE_DETAILS } from '../graphql/queries';
+import { RECIPE_DETAILS } from '../graphql';
 import { Comments } from './Comments';
 import { LoadingPage } from '../utils/LoadingPage';
 import { IIngredient, IComment } from '../types';

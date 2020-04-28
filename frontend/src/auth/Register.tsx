@@ -16,7 +16,7 @@ import {
   validatePassword,
 } from './FormValidation';
 import { LoadingPage } from '../utils/LoadingPage';
-import { CREATE_USER } from '../graphql/queries';
+import { CREATE_USER } from '../graphql';
 import styled from '@emotion/styled';
 import { useHistory } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { LOGIN } from '../graphql/queries';
+import { LOGIN } from '../graphql';
 import { LoadingPage } from '../utils/LoadingPage';
 import { FormContainer } from './Register';
 import {

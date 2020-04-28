@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FormContainer } from '../auth/Register';
 import { Box, Input, FormControl, Text, Button } from '@chakra-ui/core';
 import { useMutation } from '@apollo/react-hooks';
-import { CREATE_RECIPE, GET_DRINKS_QUERY } from '../graphql/queries';
+import { CREATE_RECIPE, GET_DRINKS_QUERY } from '../graphql';
 import { useHistory } from 'react-router-dom';
 import { IRecipe } from '../types';
 import { LoadingPage } from '../utils/LoadingPage';
@@ -11,13 +11,6 @@ import { LoadingPage } from '../utils/LoadingPage';
 export const CreateRecipe: FC = () => {
   const history = useHistory();
   const [createRecipe, { loading }] = useMutation(CREATE_RECIPE, {
-    // update(cache, { data: { createRecipe } }) {
-    //   const { recipes }: any = cache.readQuery({ query: GET_DRINKS_QUERY });
-    //   cache.writeQuery({
-    //     query: GET_DRINKS_QUERY,
-    //     data: { recipes: [...recipes, createRecipe] },
-    //   });
-    // },
     refetchQueries: [{ query: GET_DRINKS_QUERY }],
     awaitRefetchQueries: true,
     onCompleted: () => {
