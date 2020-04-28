@@ -11,10 +11,9 @@ interface IProps {
 export const Drink: FC<IProps> = ({ drink }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  console.log(drink);
   return (
     <Box onClick={() => onOpen()} bg='white' maxW='xs' maxH='md' rounded='lg' overflow='hidden'>
-      <DrinkModal isOpen={isOpen} onClose={onClose} drinkId={drink.id} />
+      <DrinkModal isOpen={isOpen} onClose={onClose} ingredients={drink.ingredients} comments={drink.comments} name={drink.name} />
       <Image src={drink.imageUrl} />
       <Box padding='3'>
         <Box display='flex' alignItems='baseline'>

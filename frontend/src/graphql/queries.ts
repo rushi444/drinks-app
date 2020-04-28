@@ -1,17 +1,27 @@
 import { gql } from 'apollo-boost';
 
 export const GET_DRINKS_QUERY = gql`
-  query {
-    recipes {
-      id
+query {
+  recipes {
+    id
+    name
+    numberOfLikes
+    imageUrl
+    createdBy {
       name
-      numberOfLikes
-      imageUrl
+    }
+    ingredients {
+      amount
+      name
+    }
+    comments {
+      text
       createdBy {
         name
       }
     }
   }
+}
 `;
 
 export const CREATE_USER = gql`
@@ -62,3 +72,16 @@ export const RECIPE_DETAILS = gql`
     }
   }
 `;
+
+export const CREATE_RECIPE = gql`
+mutation($name: String!, $imageUrl: String!, $ingredients: [IngredientInputType!]) {
+  createRecipe(name: $name, imageUrl: $imageUrl, ingredients: $ingredients) {
+    name
+    imageUrl
+    ingredients {
+      amount
+      name
+    }
+  }
+}
+`

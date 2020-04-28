@@ -8,19 +8,27 @@ export interface IDrink {
   numberOfLikes: number;
   imageUrl: string;
   createdBy: ICreatedBy
-  __typename: string;
+  ingredients: IIngredient[]
+  comments: IComment[]
+  // __typename?: string;
+}
+
+export interface IRecipe {
+  name: string
+  imageUrl: string
+  ingredients: IIngredient[]
 }
 
 export interface IIngredient {
   id?: number
   name: string
   amount: string
-  __typename: string
+  // __typename?: string
 }
 
 interface ICreatedBy {
   name: string
-  __typename: string
+  // __typename?: string
 }
 
 export interface IComment {

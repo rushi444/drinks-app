@@ -10,7 +10,7 @@ export const Comments: FC<IProps> = ({ comments }) => {
   return (
     <Box>
       <h1>Comments</h1>
-      {comments.map((comment, index) => (
+      {comments?.map((comment, index) => (
         <Box key={index}>
           {comment.text} By: {comment.createdBy.name}
         </Box>

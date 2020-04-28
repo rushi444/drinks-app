@@ -9,11 +9,9 @@ interface IProps {
 }
 
 export const DrinkList: FC<IProps> = ({ drinks }) => {
-  console.log('drinklist', drinks);
-
   return (
-    <Grid templateColumns='repeat(4, 1fr)' px='5%'>
-      {drinks.map((drink) => (
+    <Grid templateColumns='repeat(4, 1fr)' px='5%' gridRowGap='1rem'>
+      {drinks?.map((drink) => (
         <Drink key={drink.id} drink={drink} />
       ))}
     </Grid>

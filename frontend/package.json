@@ -19,6 +19,7 @@
     "apollo-client": "^2.6.8",
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
+    "axios": "^0.19.2",
     "emotion-theming": "^10.0.27",
     "formik": "^2.1.4",
     "graphql": "^15.0.0",

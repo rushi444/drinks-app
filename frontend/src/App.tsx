@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Dashboard } from './Views/Dashboard';
 import { Register } from './auth/Register';
 import { Login } from './auth/Login';
+import { CreateRecipe } from './components/CreateRecipe';
 
 export const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -26,7 +27,7 @@ export const App = () => {
             path='/login'
             render={(props) => <Login {...props} setLoggedIn={setLoggedIn} />}
           />
-          )} />
+         <Route exact path='/createrecipe' component={CreateRecipe} />
         </Switch>
       </div>
     </Router>
