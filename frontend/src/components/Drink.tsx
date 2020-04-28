@@ -30,7 +30,7 @@ export const Drink: FC<IProps> = ({ drink }) => {
           alignItems='baseline'
           justifyContent='space-between'
           isTruncated>
-          <Box>{drink.name}</Box>
+          <Box>{drink.name}{drink.id}</Box>
           <Box fontSize='1rem' display='flex'>
             By:<Text> {drink.createdBy.name}</Text>
           </Box>

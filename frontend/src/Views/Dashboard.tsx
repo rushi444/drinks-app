@@ -16,14 +16,10 @@ export const Dashboard: FC = () => {
 
   if (loading) return <LoadingPage />;
 
-  // data && console.log(data.recipes);
-
-  // const drinks = searchResults.length > 0 ? searchResults : data?.recipes;
-
   return (
     <div style={{ height: '90%', width: '100%', textAlign: 'center' }}>
       <SearchBar />
-      <DrinkList drinks={data?.recipes} />
+      <DrinkList drinks={searchResults.length > 0 ? searchResults : data?.recipes} />
     </div>
   );
 };
