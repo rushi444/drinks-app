@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export const GET_DRINKS_QUERY = gql`
-  query {
-    recipes(orderBy: {id:desc}) {
+  query($first: Int!, $skip: Int!) {
+    recipes(orderBy: { id: desc }, first: $first, skip: $skip) {
       id
       name
       numberOfLikes

@@ -13,7 +13,7 @@ export const Ingredients: FC<IProps> = ({ ingredients }) => {
       <List styleType='disc'></List>
       {ingredients?.map((ingredient, index) => (
         <ListItem key={index}>
-          {ingredient?.amount} {ingredient?.name}
+          {ingredient.amount} {ingredient.name}
         </ListItem>
       ))}
     </Box>

@@ -25,6 +25,7 @@ export const SearchBar: FC<IProps> = ({ setSearchResults }) => {
     <SearchContainer>
       <SearchInput
         type='text'
+        size='lg'
         name='search'
         variant='flushed'
         placeholder='search for drinks or ingredients'
@@ -36,6 +37,7 @@ export const SearchBar: FC<IProps> = ({ setSearchResults }) => {
       <Button
         onClick={(e) => handleSubmit(e)}
         variantColor='purple'
+        size='lg'
         variant='outline'
         type='submit'
         minWidth='60px'>
@@ -66,5 +68,5 @@ const SearchContainer = styled(Box)`
   margin: 0 auto;
   justify-content: center;
   margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
 `;

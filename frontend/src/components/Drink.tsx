@@ -12,9 +12,9 @@ export const Drink: FC<IProps> = ({ drink }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box onClick={() => onOpen()} bg='white' maxW='xs' maxH='md' rounded='lg' overflow='hidden'>
+    <Box onClick={() => onOpen()} bg='white' maxW='xs' height='400px' rounded='lg' overflow='hidden'>
       <DrinkModal isOpen={isOpen} onClose={onClose} ingredients={drink.ingredients} comments={drink.comments} name={drink.name} />
-      <Image minHeight='300px' src={drink.imageUrl} />
+      <Image height='300px' src={drink.imageUrl} />
       <Box padding='3'>
         <Box display='flex' alignItems='baseline'>
           <Badge rounded='full' px='2' variantColor='teal'>

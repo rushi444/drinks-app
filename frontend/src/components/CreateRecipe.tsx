@@ -82,7 +82,6 @@ export const CreateRecipe: FC = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const url = await handleImageUpload();
-    console.log(url, 'url');
     await createRecipe({ variables: { ...newRecipe, imageUrl: url } });
   };
 
