@@ -14,7 +14,7 @@ export const Drink: FC<IProps> = ({ drink }) => {
   return (
     <Box onClick={() => onOpen()} bg='white' maxW='xs' maxH='md' rounded='lg' overflow='hidden'>
       <DrinkModal isOpen={isOpen} onClose={onClose} ingredients={drink.ingredients} comments={drink.comments} name={drink.name} />
-      <Image src={drink.imageUrl} />
+      <Image minHeight='300px' src={drink.imageUrl} />
       <Box padding='3'>
         <Box display='flex' alignItems='baseline'>
           <Badge rounded='full' px='2' variantColor='teal'>

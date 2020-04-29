@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Flex, Image, Text, Grid } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 

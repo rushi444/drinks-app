@@ -10,15 +10,13 @@ import { IDrink } from '../types';
 export const Dashboard: FC = () => {
   const [searchResults, setSearchResults] = useState<IDrink[]>([]);
 
-  const { data, loading } = useQuery(GET_DRINKS_QUERY, {
-    // fetchPolicy: 'network-only'
-  });
+  const { data, loading } = useQuery(GET_DRINKS_QUERY);
 
   if (loading) return <LoadingPage />;
 
   return (
     <div style={{ height: '90%', width: '100%', textAlign: 'center' }}>
-      <SearchBar />
+      <SearchBar setSearchResults={setSearchResults} />
       <DrinkList drinks={searchResults.length > 0 ? searchResults : data?.recipes} />
     </div>
   );

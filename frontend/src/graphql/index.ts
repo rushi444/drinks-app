@@ -89,3 +89,27 @@ export const CREATE_RECIPE = gql`
     }
   }
 `;
+
+export const SEARCH_DRINKS = gql`
+query($searchText: String!) {
+  search(searchText: $searchText) {
+    id
+    name
+    numberOfLikes
+    imageUrl
+    createdBy {
+      name
+    }
+    ingredients {
+      amount
+      name
+    }
+    comments {
+      text
+      createdBy {
+        name
+      }
+    }
+  }
+}
+`
