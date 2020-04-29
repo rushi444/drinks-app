@@ -7,29 +7,33 @@ import { Drink } from './Drink';
 
 interface IProps {
   drinks: IDrink[];
-  fetchMoreDrinks: Function;
+  fetchMoreDrinks?: Function;
+  shouldRefetch: boolean
 }
 
-export const DrinkList: FC<IProps> = ({ drinks, fetchMoreDrinks }) => {
+export const DrinkList: FC<IProps> = ({ drinks, fetchMoreDrinks, shouldRefetch }) => {
+
   return (
     <Grid templateColumns='repeat(4, 1fr)' px='5%' gridRowGap='1rem'>
       {drinks?.map((drink, index) => (
         <div key={index}>
           <Drink key={drink.id} drink={drink} />
-          {index === drinks.length - 4 && (
+          {shouldRefetch && fetchMoreDrinks && index === drinks.length - 4 && (
             <Waypoint
-              onEnter={() => fetchMoreDrinks({
-                variables: {
-                  first: 8,
-                  skip: drinks.length,
-                },
-                updateQuery: (prev: any, {fetchMoreResult}: any) => {
-                  if(!fetchMoreResult) return prev
-                  return Object.assign({}, prev, {
-                    recipes: [...prev.recipes, ...fetchMoreResult.recipes]
-                  })
-                }
-              })}
+              onEnter={() =>
+                fetchMoreDrinks({
+                  variables: {
+                    first: 8,
+                    skip: drinks.length,
+                  },
+                  updateQuery: (prev: any, { fetchMoreResult }: any) => {
+                    if (!fetchMoreResult) return prev;
+                    return Object.assign({}, prev, {
+                      recipes: [...prev.recipes, ...fetchMoreResult.recipes],
+                    });
+                  },
+                })
+              }
             />
           )}
         </div>

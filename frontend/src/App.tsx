@@ -6,6 +6,8 @@ import { Dashboard } from './Views/Dashboard';
 import { Register } from './auth/Register';
 import { Login } from './auth/Login';
 import { CreateRecipe } from './components/CreateRecipe';
+import { Profile } from './Views/Profile';
+import { LikedDrinks } from './Views/LikedDrinks';
 
 export const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,7 +29,9 @@ export const App = () => {
             path='/login'
             render={(props) => <Login {...props} setLoggedIn={setLoggedIn} />}
           />
-         <Route exact path='/createrecipe' component={CreateRecipe} />
+          <Route exact path='/mydrinks' component={Profile} />
+          <Route exact path='/liked' component={LikedDrinks} />
+          <Route exact path='/createrecipe' component={CreateRecipe} />
         </Switch>
       </div>
     </Router>

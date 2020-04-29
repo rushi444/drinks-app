@@ -8,7 +8,7 @@ export const User = objectType({
         t.model.name()
         t.model.email()
         t.model.recipes({
-            type: 'Recipe'
+            type: 'Recipe', ordering: true
         })
         t.model.comments({
             type: 'Comment'

@@ -28,8 +28,8 @@ export const Navbar: FC<IProps> = ({loggedIn}) => {
       </Flex>
       <Grid color='black' w='30%' templateColumns='repeat(4, 1fr)'>
         <Link to='/'>Home</Link>
-        <Link to='/'>My Drinks</Link>
-        <Link to='/'>Liked Drinks</Link>
+        <Link to='/mydrinks'>My Drinks</Link>
+        <Link to='/liked'>Liked Drinks</Link>
         <Link to='/createrecipe'>Add a Drink</Link>
       </Grid>
     </Flex>

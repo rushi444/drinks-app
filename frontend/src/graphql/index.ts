@@ -113,3 +113,55 @@ query($searchText: String!) {
   }
 }
 `
+
+export const GET_USER_DRINKS = gql`
+query {
+  me {
+    id
+    name
+    recipes(orderBy: { id: desc }) {
+      id
+      name
+      numberOfLikes
+      imageUrl
+      createdBy {
+        name
+      }
+      ingredients {
+        amount
+        name
+      }
+      comments {
+        text
+        createdBy {
+          name
+        }
+      }
+    }
+  }
+}
+`
+
+export const GET_LIKED_DRINKS = gql`
+query {
+  likedDrinks {
+    id
+    name
+    numberOfLikes
+    imageUrl
+    createdBy {
+      name
+    }
+    ingredients {
+      amount
+      name
+    }
+    comments {
+      text
+      createdBy {
+        name
+      }
+    }
+  }
+}
+`

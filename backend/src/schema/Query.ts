@@ -53,5 +53,29 @@ export const Query = queryType({
             }
 
         })
+
+        t.field('likedDrinks', {
+            type: 'Recipe',
+            list: true,
+            args: {},
+            resolve: async (parent, args, { user, prisma }, info) => {
+                const allLikes = await prisma.like.findMany({
+                    where: {
+                        userId: user.id
+                    }
+                })
+
+                const recipeIdArr = allLikes.map(like => {
+                    return like.recipeId
+                })
+
+                const recipes = await prisma.recipe.findMany({
+                    where: {
+                        id: { in: recipeIdArr }
+                    }
+                })
+                return recipes
+            }
+        })
     }
 })

@@ -11,7 +11,7 @@ export const Recipe = objectType({
             type: 'Comment'
         })
         t.model.ingredients({
-            type: 'Ingredient', filtering: true
+            type: 'Ingredient', filtering: true, ordering: true
         })
         t.model.createdBy({
             type: 'User'

@@ -20,6 +20,7 @@ export const Dashboard: FC = () => {
     <div style={{ height: '90%', width: '100%', textAlign: 'center' }}>
       <SearchBar setSearchResults={setSearchResults} />
       <DrinkList
+        shouldRefetch={true}
         fetchMoreDrinks={fetchMore}
         drinks={searchResults.length > 0 ? searchResults : data?.recipes}
       />
