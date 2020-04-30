@@ -4,17 +4,21 @@ import { Waypoint } from 'react-waypoint';
 
 import { IDrink } from '../types';
 import { Drink } from './Drink';
+import styled from '@emotion/styled';
 
 interface IProps {
   drinks: IDrink[];
   fetchMoreDrinks?: Function;
-  shouldRefetch: boolean
+  shouldRefetch: boolean;
 }
 
-export const DrinkList: FC<IProps> = ({ drinks, fetchMoreDrinks, shouldRefetch }) => {
-
+export const DrinkList: FC<IProps> = ({
+  drinks,
+  fetchMoreDrinks,
+  shouldRefetch,
+}) => {
   return (
-    <Grid templateColumns='repeat(4, 1fr)' px='5%' gridRowGap='1rem'>
+    <ContainerGrid templateColumns='repeat(4, 1fr)' px='5%' gridRowGap='1rem'>
       {drinks?.map((drink, index) => (
         <div key={index}>
           <Drink key={drink.id} drink={drink} />
@@ -38,6 +42,19 @@ export const DrinkList: FC<IProps> = ({ drinks, fetchMoreDrinks, shouldRefetch }
           )}
         </div>
       ))}
-    </Grid>
+    </ContainerGrid>
   );
 };
+
+const ContainerGrid = styled(Grid)`
+  @media (max-width: 1600px) {
+    grid-template-columns: repeat(auto-fit);
+  }
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media(max-width: 800px){
+    grid-template-columns: repeat(1, 1fr);
+
+  }
+`;
