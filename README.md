@@ -8,8 +8,9 @@
   - [x] Infinite scroll & pagination
   - [x] User can like drinks
   - [x] Computed queries(userLiked, numberOfLikes, likedIds)
-  - [ ] User's can leave comments
-  - [ ] Subscription to drinks comments
+  - [x] User's can leave comments
+  - [ ] Update ui when new comment/Subscription to drinks comments
+  - [ ] Clean up styling
 
 
 ### How to use 
