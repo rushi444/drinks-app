@@ -1,1 +1,3 @@
-# drinks-app
+# Drinks
+
+## Instagram, but for drink recipes
