@@ -14,7 +14,7 @@ interface IProps {
 
 export const Drink: FC<IProps> = ({ drink }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [liked, setLiked] = useState(false)
+  const [liked, setLiked] = useState(false);
 
   const [likeDrink] = useMutation(LIKE_DRINK);
 
@@ -36,7 +36,7 @@ export const Drink: FC<IProps> = ({ drink }) => {
         name={drink.name}
         recipeId={drink.id}
       />
-      <Image height='300px' src={drink.imageUrl} />
+      <Image height='300px' src={drink.imageUrl} w='100%' objectFit='cover' />
       <Box padding='3'>
         <Box
           display='flex'
@@ -49,9 +49,12 @@ export const Drink: FC<IProps> = ({ drink }) => {
             onClick={(e): any => {
               e.stopPropagation();
               likeDrink({ variables: { recipeId: drink.id } });
-              setLiked(true)
+              setLiked(true);
             }}>
-            <Image src={drink.likedByUser || liked ? Liked : Heart} alt='heart' />
+            <Image
+              src={drink.likedByUser || liked ? Liked : Heart}
+              alt='heart'
+            />
           </Box>
         </Box>
         <Box
@@ -63,10 +66,7 @@ export const Drink: FC<IProps> = ({ drink }) => {
           alignItems='baseline'
           justifyContent='space-between'
           isTruncated>
-          <Box>
-            {drink.name}
-            {drink.id}
-          </Box>
+          <Box>{drink.name}</Box>
           <Box fontSize='1rem' display='flex'>
             By:<Text> {drink.createdBy.name}</Text>
           </Box>

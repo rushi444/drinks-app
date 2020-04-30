@@ -7,11 +7,14 @@ import { CREATE_RECIPE, GET_DRINKS_QUERY } from '../graphql';
 import { useHistory } from 'react-router-dom';
 import { IRecipe } from '../types';
 import { LoadingPage } from '../utils/LoadingPage';
+import styled from '@emotion/styled';
 
 export const CreateRecipe: FC = () => {
   const history = useHistory();
   const [createRecipe, { loading }] = useMutation(CREATE_RECIPE, {
-    refetchQueries: [{ query: GET_DRINKS_QUERY, variables: {first: 12, skip: 0} }],
+    refetchQueries: [
+      { query: GET_DRINKS_QUERY, variables: { first: 12, skip: 0 } },
+    ],
     awaitRefetchQueries: true,
     onCompleted: () => {
       history.push('/');
@@ -95,7 +98,7 @@ export const CreateRecipe: FC = () => {
         Add a Drink
       </Box>
       <FormControl onSubmit={(e) => handleSubmit(e)}>
-        <Input
+        <NameInput
           type='text'
           name='name'
           placeholder='name of drink'
@@ -103,8 +106,10 @@ export const CreateRecipe: FC = () => {
           value={newRecipe.name}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
         />
-        <Box>
-          <Text>Ingredients</Text>
+        <Box mb='2%'>
+          <Text as='h1' color='purple' fontSize='xl' mt='2%' mb='2%'>
+            Ingredients
+          </Text>
           {newRecipe?.ingredients.length > 0 &&
             newRecipe?.ingredients.map((ingredient: any, index: number) => (
               <h1 key={index}>
@@ -112,7 +117,7 @@ export const CreateRecipe: FC = () => {
               </h1>
             ))}
           <Box display='flex'>
-            <Input
+            <IngredientInput
               w='20%'
               type='text'
               name='amount'
@@ -122,7 +127,7 @@ export const CreateRecipe: FC = () => {
                 handleIngredientChange(e)
               }
             />
-            <Input
+            <IngredientInput
               w='60%'
               type='text'
               name='name'
@@ -132,20 +137,56 @@ export const CreateRecipe: FC = () => {
                 handleIngredientChange(e)
               }
             />
-            <Button w='20%' onClick={() => addIngredient()}>
+            <Button
+              w='20%'
+              variantColor='purple'
+              variant='outline'
+              onClick={() => addIngredient()}>
               Add
             </Button>
           </Box>
         </Box>
-        <Input
+        <IngredientInput
           id='image'
           isRequired
           type='file'
           accept='image/*'
           onChange={handleImageChange}
         />
-        <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+        <Button
+          mt='2%'
+          variantColor='purple'
+          variant='outline'
+          onClick={(e) => handleSubmit(e)}>
+          Submit
+        </Button>
       </FormControl>
     </FormContainer>
   );
 };
+
+const NameInput = styled(Input)`
+  background: transparent;
+  border-bottom: 1px solid purple;
+  margin-right: 1%;
+  min-width: 400px;
+  ::placeholder {
+    color: purple;
+  }
+  :focus {
+    ouline: none;
+    border-bottom: 2px solid purple;
+  }
+`;
+
+const IngredientInput = styled(Input)`
+  background: transparent;
+  border-bottom: 1px solid purple;
+  ::placeholder {
+    color: purple;
+  }
+  :focus {
+    ouline: none;
+    border-bottom: 2px solid purple;
+  }
+`;
