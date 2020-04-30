@@ -10,6 +10,7 @@
   - [x] Computed queries(userLiked, numberOfLikes, likedIds)
   - [ ] User's can leave comments
   - [ ] Subscription to drinks comments
+  - [ ] Clean up styling
 
 
 ### How to use 
