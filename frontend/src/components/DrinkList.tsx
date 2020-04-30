@@ -47,8 +47,8 @@ export const DrinkList: FC<IProps> = ({
 };
 
 const ContainerGrid = styled(Grid)`
-  @media (max-width: 1600px) {
-    grid-template-columns: repeat(auto-fit);
+  @media (max-width: 1700px) {
+    grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
