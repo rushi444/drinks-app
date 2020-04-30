@@ -7,6 +7,7 @@ export interface IDrink {
   name: string;
   numberOfLikes: number;
   imageUrl: string;
+  likedByUser: boolean;
   createdBy: ICreatedBy
   ingredients: IIngredient[]
   comments: IComment[]

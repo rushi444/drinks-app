@@ -16,5 +16,18 @@ export const User = objectType({
         t.model.likedRecipes({
             type: 'Like'
         })
+
+        t.int('likedIds', {
+            description: 'Liked Recipe Ids by user',
+            list: true,
+            resolve: async (parent, args, { user, prisma }, info) => {
+                const liked = await prisma.like.findMany({
+                    where: {
+                        userId: user.id
+                    }
+                })
+                return liked.map(like => like.recipeId)
+            }
+        })
     }
 })

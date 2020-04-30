@@ -6,6 +6,7 @@ export const GET_DRINKS_QUERY = gql`
       id
       name
       numberOfLikes
+      likedByUser
       imageUrl
       createdBy {
         name
@@ -53,6 +54,14 @@ export const ME_QUERY = gql`
     }
   }
 `;
+
+export const GET_USER_LIKED = gql`
+query {
+  me {
+    likedIds
+  }
+}
+`
 
 export const RECIPE_DETAILS = gql`
   query($id: Int) {
@@ -123,6 +132,7 @@ query {
       id
       name
       numberOfLikes
+      likedByUser
       imageUrl
       createdBy {
         name
@@ -148,6 +158,7 @@ query {
     id
     name
     numberOfLikes
+    likedByUser
     imageUrl
     createdBy {
       name
@@ -161,6 +172,19 @@ query {
       createdBy {
         name
       }
+    }
+  }
+}
+`
+
+export const LIKE_DRINK = gql`
+mutation($recipeId: Int!) {
+  createLike(recipeId: $recipeId) {
+    likedBy {
+      name
+    }
+    recipe {
+      name
     }
   }
 }

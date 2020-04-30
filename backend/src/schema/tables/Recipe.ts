@@ -29,5 +29,21 @@ export const Recipe = objectType({
                 return likes.length
             }
         })
+
+        t.boolean('likedByUser', {
+            description: 'bool if user has liked this recipe',
+            resolve: async ({ id }, args, { prisma, user }, info) => {
+                const liked = await prisma.like.findMany({
+                    where: {
+                        AND: [
+                            { userId: user.id },
+                            { recipeId: id }
+                        ]
+                    }
+                })
+                return liked.length ? true : false
+            }
+
+        })
     }
 })
