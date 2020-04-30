@@ -66,7 +66,7 @@ export const Mutation = mutationType({
             resolve: async (parent, { name, imageUrl, ingredients }, { user, prisma }, info) => {
                 if (!user) {
                     throw new Error('Not Authenticated')
-                }
+                } 
                 const newRecipe = await prisma.recipe.create({
                     data: {
                         name, imageUrl, createdBy: {
@@ -74,6 +74,7 @@ export const Mutation = mutationType({
                                 id: user.id
                             }
                         }
+
                     }
                 })
                 await Promise.all([

@@ -7,6 +7,7 @@ export const Recipe = objectType({
         t.model.id()
         t.model.name()
         t.model.imageUrl()
+        t.model.userId()
         t.model.comments({
             type: 'Comment'
         })
@@ -43,7 +44,6 @@ export const Recipe = objectType({
                 })
                 return liked.length ? true : false
             }
-
         })
     }
 })

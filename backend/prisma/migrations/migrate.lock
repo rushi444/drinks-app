@@ -3,8 +3,4 @@
 # Prisma Migrate lockfile v1
 # Read more about conflict resolution here: TODO
 
-20200421092630-test1
-20200421100327-test2
-20200421123211-test3
-20200421123915-test3-revert
-20200423160346-test5
+20200430081748-test1

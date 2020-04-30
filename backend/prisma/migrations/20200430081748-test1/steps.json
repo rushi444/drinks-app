@@ -175,7 +175,32 @@
       "model": "Recipe",
       "field": "imageUrl",
       "type": "String",
-      "arity": "Optional"
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "imageUrl"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "imageUrl"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "\"https://cb2.scene7.com/is/image/CB2/MarieCoupeCoktailGlasses7ozROF16/?$web_zoom$&190905021650&wid=450&hei=450\""
     },
     {
       "tag": "CreateField",
@@ -254,9 +279,34 @@
     {
       "tag": "CreateField",
       "model": "Recipe",
-      "field": "createdOn",
+      "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Recipe",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
     },
     {
       "tag": "CreateModel",

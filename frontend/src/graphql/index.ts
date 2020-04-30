@@ -56,12 +56,12 @@ export const ME_QUERY = gql`
 `;
 
 export const GET_USER_LIKED = gql`
-query {
-  me {
-    likedIds
+  query {
+    me {
+      likedIds
+    }
   }
-}
-`
+`;
 
 export const RECIPE_DETAILS = gql`
   query($id: Int) {
@@ -92,43 +92,69 @@ export const CREATE_RECIPE = gql`
       name
       imageUrl
       ingredients {
-        amount
         name
+        amount
       }
     }
   }
 `;
 
 export const SEARCH_DRINKS = gql`
-query($searchText: String!) {
-  search(searchText: $searchText) {
-    id
-    name
-    numberOfLikes
-    imageUrl
-    createdBy {
+  query($searchText: String!) {
+    search(searchText: $searchText) {
+      id
       name
-    }
-    ingredients {
-      amount
-      name
-    }
-    comments {
-      text
+      numberOfLikes
+      imageUrl
       createdBy {
         name
       }
+      ingredients {
+        amount
+        name
+      }
+      comments {
+        text
+        createdBy {
+          name
+        }
+      }
     }
   }
-}
-`
+`;
 
 export const GET_USER_DRINKS = gql`
-query {
-  me {
-    id
-    name
-    recipes(orderBy: { id: desc }) {
+  query {
+    me {
+      id
+      name
+      recipes(orderBy: { id: desc }) {
+        id
+        name
+        numberOfLikes
+        likedByUser
+        imageUrl
+        createdBy {
+          name
+        }
+        ingredients {
+          amount
+          name
+        }
+        comments {
+          text
+          createdBy {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_LIKED_DRINKS = gql`
+  query {
+    likedDrinks {
       id
       name
       numberOfLikes
@@ -149,43 +175,17 @@ query {
       }
     }
   }
-}
-`
+`;
 
-export const GET_LIKED_DRINKS = gql`
-query {
-  likedDrinks {
-    id
-    name
-    numberOfLikes
-    likedByUser
-    imageUrl
-    createdBy {
-      name
-    }
-    ingredients {
-      amount
-      name
-    }
-    comments {
-      text
-      createdBy {
+export const LIKE_DRINK = gql`
+  mutation($recipeId: Int!) {
+    createLike(recipeId: $recipeId) {
+      likedBy {
+        name
+      }
+      recipe {
         name
       }
     }
   }
-}
-`
-
-export const LIKE_DRINK = gql`
-mutation($recipeId: Int!) {
-  createLike(recipeId: $recipeId) {
-    likedBy {
-      name
-    }
-    recipe {
-      name
-    }
-  }
-}
-`
+`;
