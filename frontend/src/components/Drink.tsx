@@ -34,6 +34,7 @@ export const Drink: FC<IProps> = ({ drink }) => {
         ingredients={drink.ingredients}
         comments={drink.comments}
         name={drink.name}
+        recipeId={drink.id}
       />
       <Image height='300px' src={drink.imageUrl} />
       <Box padding='3'>

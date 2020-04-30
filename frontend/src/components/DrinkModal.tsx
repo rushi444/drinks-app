@@ -19,9 +19,10 @@ interface IProps {
   name: string
   ingredients: IIngredient[]
   comments: IComment[]
+  recipeId: number
 }
 
-export const DrinkModal: FC<IProps> = ({ isOpen, onClose, ingredients, comments, name }) => {
+export const DrinkModal: FC<IProps> = ({ isOpen, onClose, ingredients, comments, name, recipeId }) => {
   return (
     <Modal blockScrollOnMount={true} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -30,7 +31,7 @@ export const DrinkModal: FC<IProps> = ({ isOpen, onClose, ingredients, comments,
         <ModalCloseButton />
         <ModalBody>
           <Ingredients ingredients={ingredients} />
-          <Comments comments={comments} />
+          <Comments comments={comments} recipeId={recipeId} />
         </ModalBody>
         <ModalFooter>
           <Button variantColor='blue' mr={3} onClick={onClose}>

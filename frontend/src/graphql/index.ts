@@ -189,3 +189,14 @@ export const LIKE_DRINK = gql`
     }
   }
 `;
+
+export const CREATE_COMMENT = gql`
+mutation ($recipeId:Int!, $text:String!){
+  createComment(text:$text, recipeId:$recipeId){
+    text
+    createdBy {
+      name
+    }
+  }
+}
+`

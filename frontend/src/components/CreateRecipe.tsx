@@ -10,7 +10,7 @@ import { LoadingPage } from '../utils/LoadingPage';
 
 export const CreateRecipe: FC = () => {
   const history = useHistory();
-  const [createRecipe, { loading, error }] = useMutation(CREATE_RECIPE, {
+  const [createRecipe, { loading }] = useMutation(CREATE_RECIPE, {
     refetchQueries: [{ query: GET_DRINKS_QUERY, variables: {first: 12, skip: 0} }],
     awaitRefetchQueries: true,
     onCompleted: () => {
