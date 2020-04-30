@@ -19,7 +19,7 @@ export const Comments: FC<IProps> = ({ comments, recipeId }) => {
   return (
     <Box>
       <h1>Comments</h1>
-      <Box>
+      <Box display='flex'>
         <Input
           type='text'
           name='text'
