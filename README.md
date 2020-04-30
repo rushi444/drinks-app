@@ -4,6 +4,7 @@
   - [x] User in server context
   - [x] Ability to create recipes
   - [x] Can login and view liked, and added recipes
+  - [x] Search for drinks or ingredients
   - [x] Infinite scroll & pagination
   - [x] User can like drinks
   - [x] Computed queries(userLiked, numberOfLikes, likedIds)
