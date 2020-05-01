@@ -67,7 +67,7 @@ export const Register: FC = () => {
                   <FormControl
                     isInvalid={form.errors.password && form.touched.password}>
                     <FormLabel htmlFor='password'>Password</FormLabel>
-                    <Input {...field} id='password' placeholder='password' />
+                    <Input {...field} type='password' id='password' placeholder='password' />
                     <FormErrorMessage>
                       {form?.errors?.password}
                     </FormErrorMessage>
