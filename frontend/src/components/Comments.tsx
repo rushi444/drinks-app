@@ -14,11 +14,12 @@ export const Comments: FC<IProps> = ({ comments, recipeId }) => {
   const [text, setText] = useState('');
   const [allComments, setAllComments] = useState(comments);
 
-  const { loading } = useSubscription(NEW_COMMENT_SUBSCRIBE, {
+  useSubscription(NEW_COMMENT_SUBSCRIBE, {
     variables: {
       recipeId,
     },
-    onSubscriptionData: (data) => setAllComments([...allComments, data.subscriptionData.data.newComment])
+    onSubscriptionData: (data) =>
+      setAllComments([...allComments, data.subscriptionData.data.newComment]),
   });
 
   const [createComment] = useMutation(CREATE_COMMENT, {
