@@ -200,3 +200,14 @@ mutation ($recipeId:Int!, $text:String!){
   }
 }
 `
+
+export const NEW_COMMENT_SUBSCRIBE = gql`
+  subscription ($recipeId:Int!) {
+    newComment(recipeId: $recipeId) {
+      text
+      createdBy {
+        name
+      }
+    }
+}
+`

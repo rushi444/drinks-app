@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 import { Box, Input, Button } from '@chakra-ui/core';
 import { IComment } from '../types';
-import { useMutation } from '@apollo/react-hooks';
-import { CREATE_COMMENT } from '../graphql';
+import { useMutation, useSubscription } from '@apollo/react-hooks';
+import { CREATE_COMMENT, NEW_COMMENT_SUBSCRIBE } from '../graphql';
 import styled from '@emotion/styled';
 
 interface IProps {
@@ -12,6 +12,15 @@ interface IProps {
 
 export const Comments: FC<IProps> = ({ comments, recipeId }) => {
   const [text, setText] = useState('');
+  const [allComments, setAllComments] = useState(comments);
+
+  const { loading } = useSubscription(NEW_COMMENT_SUBSCRIBE, {
+    variables: {
+      recipeId,
+    },
+    onSubscriptionData: (data) => setAllComments([...allComments, data.subscriptionData.data.newComment])
+  });
+
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: {
       recipeId,
@@ -21,7 +30,9 @@ export const Comments: FC<IProps> = ({ comments, recipeId }) => {
   });
   return (
     <Box>
-      <Box as='h1' fontSize='lg'>Comments</Box>
+      <Box as='h1' fontSize='lg'>
+        Comments
+      </Box>
       <Box display='flex'>
         <Input
           type='text'
@@ -42,7 +53,7 @@ export const Comments: FC<IProps> = ({ comments, recipeId }) => {
         </Button>
       </Box>
       <Box height='auto'>
-        {comments?.map((comment, index) => (
+        {allComments?.map((comment, index) => (
           <CommentContainer
             key={index}
             display='flex'
@@ -57,7 +68,7 @@ export const Comments: FC<IProps> = ({ comments, recipeId }) => {
 };
 
 const CommentContainer = styled(Box)`
-display: flex;
-justify-content: space-between;
-margin-top: 1%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1%;
 `;

@@ -18,8 +18,6 @@ export const Drink: FC<IProps> = ({ drink }) => {
 
   const [likeDrink] = useMutation(LIKE_DRINK);
 
-  console.log(drink);
-
   return (
     <Box
       onClick={() => onOpen()}
