@@ -2,9 +2,9 @@ import { PrismaClient } from '@prisma/client'
 import jwt from 'jsonwebtoken'
 import { PubSub } from 'apollo-server'
 
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 
-const pubsub = new PubSub()
+export const pubsub = new PubSub()
 
 export const getUser = (token: string) => {
     try {
@@ -31,9 +31,12 @@ export type Context = {
 }
 
 export const createContext = ({ req, connection }: any): Context => {
-    const tokenWithBearer = req?.headers?.authorization || ''
+    if(connection){
+        return connection.context
+    }
+    const tokenWithBearer = req.headers.authorization || ''
     const token = tokenWithBearer.split(' ')[1]
-    const user = getUser(token)
+    const user = getUser(token)   
     return {
         user,
         prisma,

@@ -7,9 +7,10 @@ export const CommentSubscription = subscriptionField('newComment', {
     description: 'New Comment Subscription',
     args: { recipeId: intArg({ required: true }) },
     subscribe: withFilter(
-        (parent, args, { pubsub }, info) => pubsub.asyncIterator('newComment'),
+        (parent, args, context, info) => {
+           return context.pubsub.asyncIterator('newComment')},
         async (payload, variables) => {
-            return payload.newComment.recipeId === variables.recipeId
+            return payload.recipeId === variables.recipeId
         }),
-    resolve: payload => payload.newComment
+    resolve: payload => payload
 })
