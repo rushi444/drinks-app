@@ -30,8 +30,8 @@ export type Context = {
     pubsub: any,
 }
 
-export const createContext = ({ req, res }: any): Context => {
-    const tokenWithBearer = req.headers.authorization || ''
+export const createContext = ({ req, connection }: any): Context => {
+    const tokenWithBearer = req?.headers?.authorization || ''
     const token = tokenWithBearer.split(' ')[1]
     const user = getUser(token)
     return {
