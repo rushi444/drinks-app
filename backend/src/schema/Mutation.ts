@@ -100,7 +100,7 @@ export const Mutation = mutationType({
                 text: stringArg({ required: true }),
                 recipeId: intArg({ required: true })
             },
-            resolve: async (parent, { text, recipeId }, { user, prisma }, info) => {
+            resolve: async (parent, { text, recipeId }, { user, prisma, pubsub }, info) => {
                 if (!user) {
                     throw new Error('Not Authenticated')
                 }
@@ -117,6 +117,7 @@ export const Mutation = mutationType({
                         }
                     }
                 })
+                pubsub.publish('newComment', newComment)
                 return newComment
             }
         })
