@@ -12,6 +12,8 @@ export const Profile = () => {
     return <LoadingPage />;
   }
 
+  console.log(data)
+
   return (
     <Box mt='2%'>
       <DrinkList

@@ -6,6 +6,8 @@ import { IIngredient } from './Utils'
 export const Mutation = mutationType({
     definition: t => {
         t.crud.deleteOneLike({ alias: 'unlike' })
+        t.crud.deleteOneComment()
+        t.crud.updateOneRecipe()
 
         t.field('register', {
             type: 'User',

@@ -11,7 +11,7 @@ export const Dashboard: FC = () => {
   const [searchResults, setSearchResults] = useState<IDrink[]>([]);
 
   const { data, loading, fetchMore } = useQuery(GET_DRINKS_QUERY, {
-    variables: { first: 12, skip: 0 },
+    variables: { first: 8, skip: 0 },
   });
 
   if (loading) return <LoadingPage />;
