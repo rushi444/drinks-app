@@ -9,8 +9,11 @@
   - [x] User can like drinks
   - [x] Computed queries(userLiked, numberOfLikes, likedIds)
   - [x] User's can leave comments
-  - [ ] Update ui when new comment/Subscription to drinks comments
+  - [x] Update ui when new comment/Subscription to drinks comments
   - [ ] Clean up styling
+  - [ ] Delete user's own comments
+  - [ ] Unlike recipes
+  - [ ] Cascade Deletes(Currently disabled, using Prisma 2 experimental)
 
 
 ### How to use 
