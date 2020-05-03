@@ -8,6 +8,7 @@ export const Mutation = mutationType({
         t.crud.deleteOneLike({ alias: 'unlike' })
         t.crud.deleteOneComment()
         t.crud.updateOneRecipe()
+        t.crud.createOneLike()
 
         t.field('register', {
             type: 'User',

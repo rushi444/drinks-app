@@ -17,10 +17,10 @@ import { validateEmail, validatePasswordLogin } from './FormValidation';
 import { useHistory } from 'react-router-dom';
 
 interface IProps {
-  setLoggedIn: Function
+  setLoggedIn: Function;
 }
 
-export const Login: FC<IProps> = ({ setLoggedIn}) => {
+export const Login: FC<IProps> = ({ setLoggedIn }) => {
   const history = useHistory();
   const [login, { loading, client }] = useMutation(LOGIN, {
     onError: (err) => console.log(err),
@@ -29,7 +29,7 @@ export const Login: FC<IProps> = ({ setLoggedIn}) => {
       client?.writeData({
         data: { isLoggedIn: !!localStorage.getItem('token') },
       });
-      setLoggedIn(true)
+      setLoggedIn(true);
       history.push('/');
     },
   });
@@ -64,7 +64,12 @@ export const Login: FC<IProps> = ({ setLoggedIn}) => {
                   <FormControl
                     isInvalid={form.errors.password && form.touched.password}>
                     <FormLabel htmlFor='password'>Password</FormLabel>
-                    <Input {...field} type='password' id='password' placeholder='password' />
+                    <Input
+                      {...field}
+                      type='password'
+                      id='password'
+                      placeholder='password'
+                    />
                     <FormErrorMessage>
                       {form?.errors?.password}
                     </FormErrorMessage>
