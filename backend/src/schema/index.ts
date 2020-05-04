@@ -12,14 +12,15 @@ import { Mutation } from './Mutation'
 import { CommentSubscription } from './Subscriptions'
 import { AuthPayload, IngredientInputType } from './Utils'
 
-export const schema = makeSchema({
+export default makeSchema({
     types: [Query, Mutation, User, Recipe, Comment, Ingredient, Like, AuthPayload, IngredientInputType, CommentSubscription],
     plugins: [nexusPrismaPlugin()],
     outputs: {
         typegen: path.join(
             __dirname,
-            '../../node_modules/@types/nexus-typegen/index.d.ts',
+            '../generated/nexus.ts',
         ),
+        schema: path.join(__dirname, '../generated/schema.graphql')
     },
     typegenAutoConfig: {
         contextType: 'Context.Context',

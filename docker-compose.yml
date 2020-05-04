@@ -1,0 +1,25 @@
+version: '3.7'
+services: 
+    backend:
+        container_name: backend
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        volumes: 
+            - ./backend:/app/backend
+        ports: 
+            - 4000:4000
+        environment: 
+            - DB_HOST=db
+            - DB_NAME=postgres
+            - DB_USER=postgres
+            - DB_PASS=supersecretpassword
+            - DATABASE_URL=postgres://eruktrvj:27ySTS8ccMkok1moF2Oi7NVD5ktb5KC1@drona.db.elephantsql.com:5432/eruktrvj
+    # db:
+    #     container_name: db
+    #     image: postgres:12.2-alpine
+    #     environment: 
+    #         - POSTGRES_DB=backend
+    #         - POSTGRES_USER=postgres
+    #         - POSTGRES_PASSWORD=supersecretpassword
+

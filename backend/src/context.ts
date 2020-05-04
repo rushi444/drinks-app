@@ -17,12 +17,12 @@ export const getUser = (token: string) => {
     }
 }
 
-type User = {
+export type User = {
     id: number
     email: string
     iat: number
     exp: number
-}
+} | any
 
 export type Context = {
     prisma: PrismaClient
