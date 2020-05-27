@@ -8,7 +8,6 @@ RUN yarn
 
 COPY . /app/frontend
 
-
 EXPOSE 3000
 
 CMD ["yarn", "start"]

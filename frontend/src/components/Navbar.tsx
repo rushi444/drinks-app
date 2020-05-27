@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Flex, Image, Text, Grid } from '@chakra-ui/core';
+import { Flex, Image, Text, Grid, Button } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 
 interface IProps {
@@ -22,7 +22,7 @@ export const Navbar: FC<IProps> = ({ loggedIn }) => {
           size={50}
         />
         <Text pl={3} color='black' fontSize='4xl'>
-          Drinks{loggedIn}
+          Cocktail Connoisseur
         </Text>
       </Flex>
       <Grid color='black' w='40%' templateColumns='repeat(5, 1fr)'>
@@ -30,7 +30,13 @@ export const Navbar: FC<IProps> = ({ loggedIn }) => {
         <Link to='/mydrinks'>My Drinks</Link>
         <Link to='/liked'>Liked Drinks</Link>
         <Link to='/createrecipe'>Add a Drink</Link>
-        <Link to='/'>Logout</Link>
+        <Button
+          onClick={() => {
+            localStorage.removeItem('token');
+            window.location.reload();
+          }}>
+          Logout
+        </Button>
       </Grid>
     </Flex>
   ) : (
@@ -48,7 +54,7 @@ export const Navbar: FC<IProps> = ({ loggedIn }) => {
           size={50}
         />
         <Text pl={3} color='black' fontSize='4xl'>
-          Drinks
+          Cocktail Connoisseur
         </Text>
       </Flex>
       <Grid color='black' templateColumns='repeat(3, 1fr)'>
